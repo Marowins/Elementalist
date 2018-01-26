@@ -24,7 +24,25 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update () {
-        if (Input.GetKey(KeyCode.D))
+		float x = Input.GetAxisRaw ("Horizontal");
+		float y = Input.GetAxisRaw ("Vertical");
+		Vector3 movement = new Vector2 (x, y);
+		transform.Translate (movement * speed * Time.deltaTime);
+
+		if (Input.GetAxisRaw ("Vertical") > 0) {
+			anim.SetBool ("isMoving", true);
+			anim.SetInteger ("Direction", 1);
+		}
+		if (Input.GetAxisRaw ("Vertical") < 0) {
+			anim.SetBool ("isMoving", true);
+			anim.SetInteger ("Direction", -1);
+		}
+		if (Input.GetAxisRaw ("Vertical") == 0) {
+			anim.SetBool ("isMoving", false);
+			anim.SetInteger ("Direction", 0);
+		}
+
+        /*if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(new Vector2(1, 0) * speed * Time.deltaTime);
 			anim.Play ("player_right");
@@ -43,7 +61,7 @@ public class Player : MonoBehaviour {
         {
             transform.Translate(new Vector2(0, -1) * speed * Time.deltaTime);
 			anim.Play ("player_front");
-        }
+        }*/
 		if (Input.GetMouseButtonDown(0)) {
 			mousePos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
 			Instantiate (magicArrow, transform.position, Quaternion.identity);
