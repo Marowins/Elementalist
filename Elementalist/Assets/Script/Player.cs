@@ -9,13 +9,15 @@ public class Player : MonoBehaviour {
 	public GameObject magicArrow;
 	GameObject inven;
 
-	Animator anim;
-
 	public bool isInventoryOpen = false;
 
 	public int element = 0;
 
 	public Vector3 mousePos;
+
+	Vector2 movement;
+	Animator anim;
+	Rigidbody2D rb;
 
 	void Start()
 	{
@@ -26,48 +28,41 @@ public class Player : MonoBehaviour {
 	void Update () {
 		float x = Input.GetAxisRaw ("Horizontal");
 		float y = Input.GetAxisRaw ("Vertical");
-		Vector3 movement = new Vector2 (x, y);
+		movement = new Vector2 (x, y);
 		transform.Translate (movement * speed * Time.deltaTime);
 
-		if (Input.GetAxisRaw ("Vertical") > 0) {
+		if (x > 0 || (x > 0 && y > 0) || (x > 0 && y < 0)) {
 			anim.SetBool ("isMoving", true);
-			anim.SetInteger ("Direction", 1);
-		}
-		if (Input.GetAxisRaw ("Vertical") < 0) {
+			anim.SetInteger ("y", 0);
+
+			anim.SetInteger ("x", 1);
+		} else if ( x < 0 || ( x < 0 && y > 0 ) || ( x > 0 && y < 0 )) {
 			anim.SetBool ("isMoving", true);
-			anim.SetInteger ("Direction", -1);
-		}
-		if (Input.GetAxisRaw ("Vertical") == 0) {
-			anim.SetBool ("isMoving", false);
-			anim.SetInteger ("Direction", 0);
+			anim.SetInteger ("y", 0);
+
+			anim.SetInteger ("x", -1);
+		} else {
+			if (y > 0) {
+				anim.SetBool ("isMoving", true);
+				anim.SetInteger ("x", 0);
+
+				anim.SetInteger ("y", 1);
+			} else if (y < 0) {
+				anim.SetBool ("isMoving", true);
+				anim.SetInteger ("x", 0);
+
+				anim.SetInteger ("y", -1);
+			} else {
+				anim.SetBool ("isMoving", false);
+				anim.SetInteger ("x", 0);
+				anim.SetInteger ("y", 0);
+			}
 		}
 
-        /*if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(new Vector2(1, 0) * speed * Time.deltaTime);
-			anim.Play ("player_right");
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(new Vector2(-1, 0) * speed * Time.deltaTime);
-			anim.Play ("player_left");
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(new Vector2(0, 1) * speed * Time.deltaTime);
-			anim.Play ("player_back");
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(new Vector2(0, -1) * speed * Time.deltaTime);
-			anim.Play ("player_front");
-        }*/
 		if (Input.GetMouseButtonDown(0)) {
 			mousePos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
 			Instantiate (magicArrow, transform.position, Quaternion.identity);
 		}
-
-
     }
 
 	void OnTriggerEnter2D(Collider2D other)
