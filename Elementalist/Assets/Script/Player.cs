@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    private float speed = 6.0f;
+	// values
+    public float speed = 6.0f;
+	public int element = 0;
+	public float x; // player position x
+	public float y; // player positino y
+
+	// inventory
+	public bool isInventoryOpen = false;
     public GameObject[] items = new GameObject[6];
 	public GameObject magicArrow;
 	GameObject inven;
 
-	public bool isInventoryOpen = false;
-
-	public int element = 0;
-
+	// Vector2~3
 	public Vector3 mousePos;
-
 	Vector2 movement;
+
+	// anim
 	Animator anim;
-	Rigidbody2D rb;
 
 	void Start()
 	{
@@ -26,33 +30,34 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update () {
-		float x = Input.GetAxisRaw ("Horizontal");
-		float y = Input.GetAxisRaw ("Vertical");
+		x = Input.GetAxisRaw ("Horizontal");
+		y = Input.GetAxisRaw ("Vertical");
+
 		movement = new Vector2 (x, y);
 		transform.Translate (movement * speed * Time.deltaTime);
 
-		if (x > 0 || (x > 0 && y > 0) || (x > 0 && y < 0)) {
+		if ( x > 0 || (x > 0 && y != 0) ) { // 오른쪽 위 & 오른쪽 아래 & 오른쪽 
 			anim.SetBool ("isMoving", true);
-			anim.SetInteger ("y", 0);
+			anim.SetInteger ("y", 0); // 애니메이션 2개 중첩 방지
 
-			anim.SetInteger ("x", 1);
-		} else if ( x < 0 || ( x < 0 && y > 0 ) || ( x > 0 && y < 0 )) {
+            anim.SetInteger ("x", 1);
+		} else if ( x < 0 || ( x < 0 && y != 0) ) { // 왼쪽 위 & 왼쪽 아래 & 왼쪽
 			anim.SetBool ("isMoving", true);
-			anim.SetInteger ("y", 0);
+			anim.SetInteger ("y", 0); // 애니메이션 2개 중첩 방지
 
 			anim.SetInteger ("x", -1);
 		} else {
-			if (y > 0) {
+			if (y > 0) { // 위
 				anim.SetBool ("isMoving", true);
-				anim.SetInteger ("x", 0);
+				anim.SetInteger ("x", 0); // 애니메이션 2개 중첩 방지
 
-				anim.SetInteger ("y", 1);
-			} else if (y < 0) {
+                anim.SetInteger ("y", 1);
+			} else if (y < 0) { // 아래
 				anim.SetBool ("isMoving", true);
-				anim.SetInteger ("x", 0);
+				anim.SetInteger ("x", 0); // 애니메이션 2개 중첩 방지
 
-				anim.SetInteger ("y", -1);
-			} else {
+                anim.SetInteger ("y", -1);
+			} else { // 멈췄을때
 				anim.SetBool ("isMoving", false);
 				anim.SetInteger ("x", 0);
 				anim.SetInteger ("y", 0);
