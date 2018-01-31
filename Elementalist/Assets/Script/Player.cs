@@ -66,7 +66,8 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown(0)) {
 			mousePos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-			Instantiate (magicArrow, transform.position, Quaternion.identity);
+			var arrow = Instantiate (magicArrow, transform.position, Quaternion.identity);
+			Destroy (arrow, 2f);
 		}
     }
 
