@@ -20,13 +20,11 @@ public class InventoryItems : MonoBehaviour {
 
 	void Update () {
 		GetComponent<SpriteRenderer> ().sprite = sprite [state];
-		originPosition = origin.transform.position;
 	} 	
 
 	void OnMouseDown()
 	{
 		if (state != 6) {
-			
 			offset = gameObject.transform.position -
 			Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 10.0f));
 		}

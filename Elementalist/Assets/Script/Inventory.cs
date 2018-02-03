@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
 
-	public GameObject cam;
 	public GameObject[] inventory = new GameObject[6];
 	public int itemNumb = 0;
 
 	private int i;
-
-	void Update()
-	{
-		transform.position = cam.transform.position;
-	}
-
 
 	public void takeItem(int element){
 		inventory [itemNumb].GetComponent<InventoryItems> ().state = element;
@@ -25,10 +18,10 @@ public class Inventory : MonoBehaviour {
 	public void useItem(int invenNumb)
 	{
 
-		for (i = invenNumb; i < 5; i++) {
+		for (i = invenNumb; i < 6; i++) {
 			inventory [i].GetComponent<InventoryItems> ().state = inventory [i+1].GetComponent<InventoryItems> ().state;
 		}
-		inventory [5].GetComponent<InventoryItems> ().state = 6;
+		inventory [i].GetComponent<InventoryItems> ().state = 6;
 		itemNumb--;
 	}
 }

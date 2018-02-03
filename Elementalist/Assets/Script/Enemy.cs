@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour {
 		transform.Translate (targetPos * 3.0f * Time.deltaTime);
 		if (isDead) {
 			Instantiate (item, transform.position, Quaternion.identity);
-			item.GetComponent<FieldItems> ().element = Random.Range(0, 2);
+			item.GetComponent<FieldItems> ().element = Random.Range(0, 6);
 			Destroy (gameObject);
 		}
 	}
