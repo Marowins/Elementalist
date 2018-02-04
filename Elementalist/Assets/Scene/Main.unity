@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 48274567}
   - component: {fileID: 48274566}
   m_Layer: 5
-  m_Name: YellowElement
+  m_Name: Item3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -486,7 +486,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 342570234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -380.11993, y: -400.9986, z: -1}
+  m_LocalPosition: {x: -43.39999, y: -0.3999844, z: 1}
   m_LocalScale: {x: 4.75307, y: 4.75307, z: 4.75307}
   m_Children: []
   m_Father: {fileID: 1539552188}
@@ -514,7 +514,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 354828005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -378.35178, y: -400.9986, z: -1}
+  m_LocalPosition: {x: -15.1, y: -0.3999939, z: 1}
   m_LocalScale: {x: 4.75307, y: 4.75307, z: 4.75307}
   m_Children: []
   m_Father: {fileID: 1539552188}
@@ -969,7 +969,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 675071484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -381.85004, y: -400.99915, z: -1}
+  m_LocalPosition: {x: -71.7, y: -0.3999996, z: 1}
   m_LocalScale: {x: 4.75307, y: 4.75307, z: 4.75307}
   m_Children: []
   m_Father: {fileID: 1539552188}
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 699958783}
   - component: {fileID: 699958782}
   m_Layer: 5
-  m_Name: PurpleElement
+  m_Name: Item6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1350,7 +1350,7 @@ GameObject:
   - component: {fileID: 837584478}
   - component: {fileID: 837584477}
   m_Layer: 5
-  m_Name: BlueElement
+  m_Name: Item5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1417,9 +1417,8 @@ GameObject:
   - component: {fileID: 974250920}
   - component: {fileID: 974250922}
   - component: {fileID: 974250921}
-  - component: {fileID: 974250923}
   m_Layer: 5
-  m_Name: RedElement
+  m_Name: Item1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1476,30 +1475,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 974250919}
---- !u!114 &974250923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 974250919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c3934a937d07a34bad7f6177bdb2bf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite:
-  - {fileID: 21300000, guid: befcac0bf032e664c927e2d6618a72da, type: 3}
-  - {fileID: 21300000, guid: 741f1fdd88c865644a08f468b42e10b4, type: 3}
-  - {fileID: 21300000, guid: cbfa8ae5a4dfecd4ca396879cd2b4678, type: 3}
-  - {fileID: 21300000, guid: 889c881645d8e6246aab8ff5f367de59, type: 3}
-  - {fileID: 21300000, guid: 3bb3f9623cdc911468ef1220d9bf4e1e, type: 3}
-  - {fileID: 21300000, guid: 377e7a9542423594a9bf7afa6bcf26f7, type: 3}
-  - {fileID: 0}
-  state: 6
-  invenNumber: 0
-  player: {fileID: 0}
-  equip: {fileID: 0}
-  origin: {fileID: 0}
 --- !u!1 &1046594902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,7 +1774,7 @@ GameObject:
   - component: {fileID: 1179917337}
   - component: {fileID: 1179917336}
   m_Layer: 5
-  m_Name: GreenElement
+  m_Name: Item4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1866,7 +1841,6 @@ GameObject:
   - component: {fileID: 1240845944}
   - component: {fileID: 1240845946}
   - component: {fileID: 1240845945}
-  - component: {fileID: 1240845947}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -1927,25 +1901,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1240845943}
---- !u!114 &1240845947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1240845943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9e22cf687b5c74b9f910f2f87caffc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory:
-  - {fileID: 974250919}
-  - {fileID: 1791264207}
-  - {fileID: 1984543446}
-  - {fileID: 1732763369}
-  - {fileID: 1518030671}
-  - {fileID: 227680368}
-  itemNumb: 0
 --- !u!1 &1273237122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2262,7 +2217,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1554758911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -373.22324, y: -400.9986, z: -1}
+  m_LocalPosition: {x: 69.8, y: -0.3999939, z: 1}
   m_LocalScale: {x: 4.75307, y: 4.75307, z: 4.75307}
   m_Children: []
   m_Father: {fileID: 1539552188}
@@ -2290,7 +2245,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1597343551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -376.6882, y: -400.9986, z: -1}
+  m_LocalPosition: {x: 13.2, y: -0.3999939, z: 1}
   m_LocalScale: {x: 4.75307, y: 4.75307, z: 4.75307}
   m_Children: []
   m_Father: {fileID: 1539552188}
@@ -2318,7 +2273,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1684733971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -374.9581, y: -400.9986, z: -1}
+  m_LocalPosition: {x: 41.5, y: -0.3999939, z: 1}
   m_LocalScale: {x: 4.75307, y: 4.75307, z: 4.75307}
   m_Children: []
   m_Father: {fileID: 1539552188}
@@ -2677,7 +2632,7 @@ GameObject:
   - component: {fileID: 1864007236}
   - component: {fileID: 1864007235}
   m_Layer: 5
-  m_Name: OrangeElement
+  m_Name: Item2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
