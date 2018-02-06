@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour {
 	public void useItem(int invenNumb)
 	{
 
-		for (i = invenNumb; i < 6; i++) {
+		for (i = invenNumb; i < 5; i++) {
 			inventory [i].GetComponent<InventoryItems> ().state = inventory [i+1].GetComponent<InventoryItems> ().state;
 		}
 		inventory [i].GetComponent<InventoryItems> ().state = 6;
