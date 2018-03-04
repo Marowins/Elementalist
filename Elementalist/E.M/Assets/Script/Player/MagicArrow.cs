@@ -51,7 +51,6 @@ public class MagicArrow : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log ("A");
 		if (other.gameObject.CompareTag ("Enemy")) {
 			Destroy (gameObject);
 			other.GetComponent<Kelsiper> ().hp -= 1;

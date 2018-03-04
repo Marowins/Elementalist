@@ -14,14 +14,17 @@ public class InventoryItems : MonoBehaviour {
 
 	private Vector3 offset;
 	private Vector2 originPosition;
+    public bool isStuff = false;
+    public bool craftContact = false;
+	public bool playerContact = false;
 
-	private bool playerContact = false;
 
-
-	void Update () {
-		GetComponent<SpriteRenderer> ().sprite = sprite [state];
-		originPosition = origin.transform.position;
-	} 	
+    void Update()
+    {
+        GetComponent<SpriteRenderer>().sprite = sprite[state];
+        originPosition = origin.transform.position;
+       // Debug.Log(craftContact);
+    } 	
 
 	void OnMouseDown()
 	{
@@ -42,13 +45,29 @@ public class InventoryItems : MonoBehaviour {
 
 	void OnMouseUp(){
 		if (state != 6) {
-			if (playerContact == true) {
-				equip.GetComponent<EquipItem> ().state = state;
-				Debug.Log (transform.position.x + "");
-				transform.position = originPosition;
-				state = 6;
-				GameObject.Find ("Inventory").GetComponent<Inventory> ().useItem (invenNumber);
-			} else {
+			if (playerContact == true || craftContact) {
+                if (playerContact)
+                {
+                    equip.GetComponent<EquipItem>().state = state;
+                    Debug.Log(transform.position.x + "");
+                    transform.position = originPosition;
+                    state = 6;
+                    GameObject.Find("Inventory").GetComponent<Inventory>().useItem(invenNumber);
+                }
+                
+                if (craftContact)
+                {
+                    if (GameObject.Find("CraftingTable").GetComponent<Craft>().craftNum == 0)
+                        originPosition = new Vector3(-0.8f, 0, -1);
+                    if (GameObject.Find("CraftingTable").GetComponent<Craft>().craftNum == 1)
+                        originPosition = new Vector3(0, 0, -1);
+
+                    GameObject.Find("Inventory").GetComponent<Inventory>().moveToCraft(invenNumber);
+
+                }
+
+            }
+            else {
 				transform.position = originPosition;
 			}
 		}
@@ -58,12 +77,20 @@ public class InventoryItems : MonoBehaviour {
 	{ 	
 		if (other.gameObject.CompareTag ("Player"))
 			playerContact = true;
-	}
+
+        if (other.gameObject.CompareTag("Skill"))
+            craftContact = true;
+
+        Debug.Log(other.gameObject.tag);
+    }
 
 	void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.gameObject.CompareTag ("Player"))
 			playerContact = false;
-	}
+
+        if (other.gameObject.CompareTag("Skill"))
+            craftContact = false;
+    }
 		
 }

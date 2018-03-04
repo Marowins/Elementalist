@@ -5,31 +5,32 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	// values
-    public float speed = 6.0f;
 	public int hp = 10;
 	public int element = 0;
 	public float x; // player position x
 	public float y; // player positino y
+	public float msBetweenAttack = 1000; //attack speed (ms)
+	float nextAttackTime;
 
 	//bool
 	bool isDamaged = false;
 
 	// inventory
 	public bool isInventoryOpen = false;
-    public GameObject[] items = new GameObject[6];
+	public GameObject[] items = new GameObject[6];
 	public GameObject magicArrow;
 	GameObject inven;
 
 	// Vector2~3
 	public Vector3 mousePos;
-	Vector2 movement;
 
-    PlayerMovement playerMov;
+    // Require Component
+    PlayerMovement playermovement;
 
 	void Start()
 	{
 		inven = GameObject.Find ("Inventory");
-        playerMov = GetComponent<PlayerMovement>();
+        playermovement = GetComponent<PlayerMovement>();
 	}
 
 	void Update () {
@@ -37,34 +38,42 @@ public class PlayerController : MonoBehaviour {
 		x = Input.GetAxisRaw ("Horizontal");
 		y = Input.GetAxisRaw ("Vertical");
 
-        playerMov.Move(x,y);
+        playermovement.Move(x, y);
 
-		if (Input.GetMouseButtonDown(0)) {
+		//공격
+		if (Input.GetMouseButton(0)) {
 			mousePos = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-			Instantiate (magicArrow, transform.position, Quaternion.identity);
+			if (Time.time > nextAttackTime) {	//공격속도 제한
+				nextAttackTime = Time.time + msBetweenAttack / 1000;
+				Instantiate (magicArrow, transform.position, Quaternion.identity);
+                SoundManager.instance.magic.Play();
+            }
+
 		}
-    }
+	}
 
 	void OnTriggerEnter2D(Collider2D other)
-    {
+	{
 		if (other.gameObject.tag.Equals ("Items") && inven.GetComponent<Inventory>().itemNumb != 6) {
 			element = other.gameObject.GetComponent<FieldItems> ().element;
 			GameObject.Find ("Inventory").GetComponent<Inventory> ().takeItem (element);
 			Destroy (other.gameObject);
 		}
-    }
+	}
 
 	void OnTriggerStay2D(Collider2D other)
 	{
 		if (other.gameObject.CompareTag ("Enemy")) {
-			if (isDamaged == false) {
+			if (isDamaged == false && other.GetComponent<Kelsiper>().isDead == false) {
 				hp -= 1;
 				StartCoroutine (Damaged ());
 			}
 		}
 	}
 
+	//피격시 무적
 	IEnumerator Damaged(){
+        SoundManager.instance.hit.Play();
 		gameObject.GetComponent<SpriteRenderer> ().color = new Color (0.6f, 0.6f, 0.6f, 1);
 		isDamaged = true;
 		yield return new WaitForSeconds (1.5f);

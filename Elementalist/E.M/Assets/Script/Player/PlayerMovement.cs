@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour {
 
         anim.SetFloat("Direction_X", x);
         anim.SetFloat("Direction_Y", y);
-
     }
 
 }

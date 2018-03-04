@@ -41,4 +41,11 @@ public class Inventory : MonoBehaviour {
 		inventory [5].GetComponent<InventoryItems> ().state = 6;
 		itemNumb--;
 	}
+
+    public void moveToCraft(int invenNumb)
+    {
+        inventory[invenNumb].GetComponent<InventoryItems>().isStuff = true;
+	    GameObject.Find ("CraftingTable").GetComponent<Craft> ().stuff[GameObject.Find("CraftingTable").GetComponent<Craft>().craftNum] = inventory[invenNumb];
+
+    }
 }

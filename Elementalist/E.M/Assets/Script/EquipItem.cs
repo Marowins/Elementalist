@@ -13,6 +13,6 @@ public class EquipItem : MonoBehaviour {
 
 	void Update () {
 		GetComponent<SpriteRenderer> ().sprite = sprites[state];
-		GameObject.Find ("Player").GetComponent<PlayerController> ().element = state;
+		GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().element = state;
 	}
 }

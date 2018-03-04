@@ -15,18 +15,18 @@ public class Kelsiper : MonoBehaviour {
 
 	//bool
 	public bool isDead = false;
-	bool waiting = false;
 
 	void Start () {
 		StartCoroutine (Targetting ());
 	}
 
 	void Update () {
-		if(waiting == false)
+		if(isDead == false)
 			transform.Translate (targetPos * 4.0f * Time.deltaTime);
 
         if (hp <= 0) {
             colorA -= Time.deltaTime;
+			isDead = true;
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, colorA);
 
             if (colorA <= 0)
@@ -39,7 +39,7 @@ public class Kelsiper : MonoBehaviour {
 	}
 
 	IEnumerator Targetting(){
-		targetPos = (GameObject.Find ("Player").GetComponent<PlayerController> ().transform.position - transform.position).normalized;
+		targetPos = (GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().transform.position - transform.position).normalized;
 		yield return new WaitForSeconds (1.5f);
 		StartCoroutine (Targetting());
 	}
